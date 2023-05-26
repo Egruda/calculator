@@ -1,3 +1,10 @@
+.calculator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .container {
     display: flex;
     align-items: center;
@@ -22,6 +29,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
+    flex-direction: column;
+    gap: 10px;
 }
 
 html {
@@ -34,7 +43,8 @@ html {
     padding-right: 16px;
     font-size: 32px;
     border-radius: 4px;
-    width: 60px;
+    width: 90px;
+    height: 70px;
 }
 
 .number {
@@ -47,4 +57,33 @@ html {
 
 #clear {
     background-color: lightcoral;
+}
+
+.displaydiv {
+    display: flex;
+    padding: 6px;
+    justify-content: flex-end;
+    width: 100%;
+    border-style: solid;
+    border-color: white;
+    border-radius: 4px;
+  
+   
+}
+
+.display {
+    font-size: 75px;
+    margin: 0px;
+    color: white;
+    padding-right: 12px;
+}
+
+.calculator {
+    background-color: black;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border-radius: 4px;
+
 }
