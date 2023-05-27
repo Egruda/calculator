@@ -31,12 +31,16 @@ body {
     height: 100%;
     flex-direction: column;
     gap: 10px;
+    margin:0;
 }
 
 html {
     height: 100%;
+    background-color: lightskyblue;
 }
 
+#clear,
+#equal,
 .operator,
 .number {
     padding-left: 16px;
@@ -51,6 +55,7 @@ html {
     background-color: silver;
 }
 
+#equal,
 .operator {
     background-color: lightgoldenrodyellow;
 }
@@ -79,11 +84,49 @@ html {
 }
 
 .calculator {
-    background-color: black;
+    background-color: grey;
     padding: 25px;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 15px;
     border-radius: 4px;
 
+}
+
+p {
+    max-width: 9ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.brand {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.logo {
+    font-size: 32px;
+}
+
+.backspace {
+    font-size: 32px;
+    width: 90px;
+    height: 50px;
+    background-color: lightcoral;
+
+}
+
+.logo {
+    display:flex;
+    font-weight: bold;
+    color: white;
+
+}
+
+.logocontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
