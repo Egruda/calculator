@@ -17,6 +17,19 @@ let equal = document.querySelector('#equal');
 let backspace = document.querySelector('.backspace');
 backspace.addEventListener('click', backspaceFunction);
 
+let comma = document.querySelector('.comma');
+comma.addEventListener('click', commaFunction);
+
+function commaFunction() {
+    if(display.textContent.includes('.')) {
+        comma.removeEventListener('click', commaFunction);
+    } else if (display.textContent == '0') {
+        (display.textContent = '0.');
+    } else {
+        (display.textContent += '.');
+    }
+}
+
 function backspaceFunction() {
     if(display.textContent.length > 1) {
         display.textContent = display.textContent.slice(0,-1)
@@ -38,6 +51,7 @@ function clearFunction() {
     equal.removeEventListener('click', equalFunction);
     numbers.forEach((number) => number.removeEventListener('click', turnOffOperators));
     operators.forEach((operator) => operator.removeEventListener('click', secondStep));
+    comma.removeEventListener('click', commaAfterEqual);
     operators.forEach((operator) => operator.addEventListener('click', firstStep));
 }
 
@@ -47,7 +61,7 @@ function displayNumber(e) {
 }
 
 function firstStep(e) {
-    x = display.textContent;
+    x = parseFloat(display.textContent);
     operator = e.target.value;
     numbers.forEach((number) => number.addEventListener('click', turnOnOperators));
  
@@ -65,15 +79,23 @@ function equalFunction() {
     operators.forEach((operator) => operator.removeEventListener('click', secondStep));
     equal.removeEventListener('click', equalFunction);
     y = display.textContent;
-    x = operate(parseInt(x), parseInt(y),operator);
+    x = operate(parseFloat(x), parseFloat(y),operator);
     display.textContent = x;
     equal.addEventListener('click', pressEqualContinuous);
+    comma.addEventListener('click', commaAfterEqual);
     operators.forEach((operator) => operator.addEventListener('click', storeOperator));
     numbers.forEach((number) => number.addEventListener('click', removeEventListenerEqual));
 }
 
+function commaAfterEqual() {
+    comma.removeEventListener('click', commaAfterEqual);
+    clearFunction();
+    display.textContent = '0.';
+
+}
+
 function pressEqualContinuous() {
-    x = operate(parseInt(x), parseInt(y), operator);
+    x = operate(parseFloat(x), parseFloat(y), operator);
     display.textContent = x;
 }
 
@@ -87,7 +109,7 @@ function removeEventListenerEqual() {
 function secondStep(e) {
     operators.forEach((operator) => operator.removeEventListener('click', secondStep));
     y = display.textContent;
-    display.textContent = operate(parseInt(x), parseInt(y),operator);
+    display.textContent = operate(parseFloat(x), parseFloat(y),operator);
     operator = e.target.value;
     x = display.textContent;
     operators.forEach(operator => operator.addEventListener('click', storeOperator));
@@ -138,6 +160,7 @@ function operate(x,y,operator) {
         }
         else {
             return divide(x,y);
+            }
         }
     }
-}
+
